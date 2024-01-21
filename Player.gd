@@ -18,12 +18,11 @@ func _ready() -> void:
 	position = spawn_point * cell_size
 
 func _process(_delta: float) -> void:
-	print(position / cell_size)
 	if move_timer.time_left == 0.0:
-		move_player()
+		_move_player()
 	
 	
-func move_player():
+func _move_player():
 	var direction := Vector2.ZERO
 	direction.x = Input.get_axis("move_left", "move_right")
 	direction.y = Input.get_axis("move_up", "move_down")
@@ -31,4 +30,5 @@ func move_player():
 	if direction != Vector2(0.0, 0.0):
 		position += direction * unit_size
 		move_timer.start()
+		print(position / cell_size)
 	

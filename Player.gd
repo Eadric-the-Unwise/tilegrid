@@ -1,5 +1,5 @@
 extends KinematicBody2D
-
+#git
 #onready var player := $Player
 onready var move_timer := $MoveTimer
 
@@ -7,7 +7,7 @@ onready var move_timer := $MoveTimer
 var cell_size := 48
 # "16x16" unit
 var unit_size := 96
-var spawn_point := Vector2(4.5, 4.5)
+var spawn_point := Vector2(8.0, 12.0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,10 +15,10 @@ func _ready() -> void:
 	# Set move timer to 0.0
 	move_timer.start(0.0)
 	# Set player starting position
-	position = spawn_point * unit_size
+	position = spawn_point * cell_size
 
 func _process(_delta: float) -> void:
-	print(move_timer.time_left)
+	print(position / cell_size)
 	if move_timer.time_left == 0.0:
 		move_player()
 	

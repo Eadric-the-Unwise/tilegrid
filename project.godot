@@ -10,7 +10,7 @@ config_version=4
 
 [application]
 
-config/name="TileGrid-original"
+config/name="TileGrid"
 config/icon="res://icon.png"
 
 [display]

@@ -1,6 +1,6 @@
+# Enemy Script
 extends KinematicBody2D
 
-onready var move_timer := $MoveTimer
 
 # "8x8 cell
 var cell_size := 48
@@ -12,7 +12,10 @@ var spawn_point := Vector2(12.0, 8.0)
 func _ready() -> void:
 	# Set player starting position
 	position = spawn_point * cell_size
-	
+	Autoload.connect("PlayerMovedSignal", self, "_on_Player_Moved")
+
+func _on_Player_Moved():
+	print("Hello world")
 	
 func _move_enemy():
 	pass

@@ -1,6 +1,6 @@
+# Player Script
 extends KinematicBody2D
-#git
-#onready var player := $Player
+
 onready var move_timer := $MoveTimer
 
 # "8x8 cell
@@ -16,19 +16,24 @@ func _ready() -> void:
 	move_timer.start(0.0)
 	# Set player starting position
 	position = spawn_point * cell_size
+	Autoload.player = self
+	
 
 func _process(_delta: float) -> void:
 	if move_timer.time_left == 0.0:
-		_move_player()
-	
+		_move_player()	
 	
 func _move_player():
+	
 	var direction := Vector2.ZERO
 	direction.x = Input.get_axis("move_left", "move_right")
 	direction.y = Input.get_axis("move_up", "move_down")
 	
+	# wait for input
 	if direction != Vector2(0.0, 0.0):
+		Autoload.emit_signal("PlayerMovedSignal")
 		position += direction * unit_size
 		move_timer.start()
 		print(position / cell_size)
+	
 	

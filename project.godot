@@ -13,6 +13,10 @@ config_version=4
 config/name="TileGrid"
 config/icon="res://icon.png"
 
+[autoload]
+
+Autoload="*res://autoload.gd"
+
 [display]
 
 window/size/width=960

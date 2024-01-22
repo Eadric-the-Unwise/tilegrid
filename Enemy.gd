@@ -1,7 +1,8 @@
 # Enemy Script
 extends KinematicBody2D
 
-
+var move_pattern := [Vector2(0,-1), Vector2(1,0), Vector2(0,1), Vector2(-1,0)]
+var index : int = 0
 # "8x8 cell
 var cell_size := 48
 # "16x16" unit
@@ -15,7 +16,9 @@ func _ready() -> void:
 	Autoload.connect("PlayerMovedSignal", self, "_on_Player_Moved")
 
 func _on_Player_Moved():
-	print("Hello world")
+	
+	position += move_pattern[index % 4] * unit_size
+	index += 1
 	
 func _move_enemy():
 	pass

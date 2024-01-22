@@ -5,7 +5,6 @@ onready var move_timer := $Player/MoveTimer
 #onready var player := $Player
 onready var enemy := $Enemy
 
-
 #onready var old_globalPosition : Vector2 = player.global_position
 
 # "8x8 cell

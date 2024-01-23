@@ -3,11 +3,14 @@ extends KinematicBody2D
 
 onready var move_timer := $MoveTimer
 
+onready var area := $Area2D
+
 # "8x8 cell
 var cell_size := 48
 # "16x16" unit
 var unit_size := 96
 var spawn_point := Vector2(8.0, 12.0)
+var in_combat : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,7 +20,13 @@ func _ready() -> void:
 	# Set player starting position
 	position = spawn_point * cell_size
 	Autoload.player = self
+	area.connect("body_entered", self, "_on_Area2D_body_entered")
 	
+
+func _on_Area2D_body_entered(body: Node):
+	in_combat = true
+	if in_combat:
+		print("in_combat")
 
 func _process(_delta: float) -> void:
 	if move_timer.time_left == 0.0:
@@ -30,10 +39,11 @@ func _move_player():
 	direction.y = Input.get_axis("move_up", "move_down")
 	
 	# wait for input
-	if direction != Vector2(0.0, 0.0):
-		Autoload.emit_signal("PlayerMovedSignal")
-		position += direction * unit_size
-		move_timer.start()
-		print(position / cell_size)
+	if !in_combat:
+		if direction != Vector2(0.0, 0.0):
+			Autoload.emit_signal("PlayerMovedSignal")
+			position += direction * unit_size
+			move_timer.start()
+			print(position / cell_size)
 	
 	

@@ -8,3 +8,5 @@ extends Node
 onready var player : KinematicBody2D
 # Autoload.EventSignal
 signal PlayerMovedSignal 
+
+signal PlayerAttackSignal

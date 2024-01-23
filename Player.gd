@@ -2,6 +2,7 @@
 extends KinematicBody2D
 
 onready var move_timer := $MoveTimer
+onready var attack_timer := $AttackTimer
 
 onready var area := $Area2D
 
@@ -22,15 +23,24 @@ func _ready() -> void:
 	Autoload.player = self
 	area.connect("body_entered", self, "_on_Area2D_body_entered")
 	
-
-func _on_Area2D_body_entered(body: Node):
-	in_combat = true
-	if in_combat:
-		print("in_combat")
-
 func _process(_delta: float) -> void:
 	if move_timer.time_left == 0.0:
 		_move_player()	
+	if in_combat && attack_timer.time_left == 0.0:
+		render_combat()
+		
+		
+func _on_Area2D_body_entered(body: Node):
+	in_combat = true
+	if in_combat:
+		print("ENTERED COMBAT!")
+				
+
+func render_combat():
+		if Input.is_action_pressed("select"):
+			print("Attack!")
+			attack_timer.start()
+			Autoload.emit_signal("PlayerAttackSignal", 5)
 	
 func _move_player():
 	

@@ -30,7 +30,7 @@ func _process(_delta: float) -> void:
 		render_combat()
 		
 		
-func _on_Area2D_body_entered(body: Node):
+func _on_Area2D_body_entered(_body: Node):
 	in_combat = true
 	if in_combat:
 		print("ENTERED COMBAT!")

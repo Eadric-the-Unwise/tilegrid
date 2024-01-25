@@ -9,12 +9,15 @@ var cell_size := 48
 # "16x16" unit
 var unit_size := 96
 
+var tracking_index := 0
+
+# in the Inspector
 export var spawn_point := Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Set player starting position
-	position = spawn_point
+	#position = spawn_point
 	Autoload.connect("PlayerMovedSignal", self, "_on_player_moved")
 	Autoload.connect("PlayerAttackSignal", self, "_on_player_attacked")
 

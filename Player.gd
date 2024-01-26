@@ -20,6 +20,7 @@ func _ready() -> void:
 	move_timer.start(0.0)
 	# Set player starting position
 	position = spawn_point * cell_size
+	# load player Node into Autoload global get_node
 	Autoload.player = self
 	area.connect("body_entered", self, "_on_Area2D_body_entered")
 	
@@ -30,10 +31,11 @@ func _process(_delta: float) -> void:
 		render_combat()
 		
 		
-func _on_Area2D_body_entered(_body: Node):
+func _on_Area2D_body_entered(body: Node):
 	in_combat = true
 	if in_combat:
 		print("ENTERED COMBAT!")
+		#print("Enemy" + str(body.tracking_index))
 				
 
 func render_combat():

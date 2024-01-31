@@ -20,8 +20,8 @@ Autoload="*res://autoload.gd"
 
 [display]
 
-window/size/width=960
-window/size/height=864
+window/size/width=640
+window/size/height=576
 
 [gui]
 

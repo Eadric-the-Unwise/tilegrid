@@ -7,9 +7,9 @@ onready var attack_timer := $AttackTimer
 onready var area := $Area2D
 
 # "8x8 cell
-var cell_size := 48
+var cell_size := 32
 # "16x16" unit
-var unit_size := 96
+var unit_size := 64
 var spawn_point := Vector2(8.0, 12.0)
 var in_combat : bool = false
 
@@ -25,11 +25,10 @@ func _ready() -> void:
 	area.connect("body_entered", self, "_on_Area2D_body_entered")
 	
 func _process(_delta: float) -> void:
-	if move_timer.time_left == 0.0:
-		_move_player()	
 	if in_combat && attack_timer.time_left == 0.0:
 		render_combat()
-		
+	if !in_combat && move_timer.time_left == 0.0:
+		_move_player()	
 		
 func _on_Area2D_body_entered(body: Node):
 	in_combat = true

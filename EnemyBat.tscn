@@ -8,3 +8,6 @@ script = ExtResource( 2 )
 
 [node name="Sprite" parent="." index="0"]
 modulate = Color( 0.345098, 0.901961, 0, 1 )
+
+[node name="CollisionShape" parent="." index="1"]
+self_modulate = Color( 0, 0, 0, 0.352941 )

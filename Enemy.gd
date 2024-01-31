@@ -6,9 +6,9 @@ var health := 10
 export var move_pattern := [Vector2.ZERO, Vector2.ZERO, Vector2.ZERO, Vector2.ZERO]
 var index : int = 0
 # "8x8 cell
-var cell_size := 48
+var cell_size := 32
 # "16x16" unit
-var unit_size := 96
+var unit_size := 64
 # enemy tracking in enemy_list (main.gd)
 var tracking_index := 0
 
@@ -19,16 +19,16 @@ export var spawn_point := Vector2.ZERO
 func _ready() -> void:
 	# Set player starting position
 	#position = spawn_point
-	Autoload.connect("PlayerMovedSignal", self, "_on_player_moved")
+	#Autoload.connect("PlayerMovedSignal", self, "_on_player_moved")
 	Autoload.connect("PlayerAttackSignal", self, "_on_player_attacked")
 	area.connect("body_entered", self, "_on_Area2D_body_entered")
 
 func _on_Area2D_body_entered(_body: Node2D):
-	print("BODY ENTERED")
+	print("Enemy " + str(tracking_index) + "_BODY ENTERED AREA2D")
 
 func _on_player_moved():
-	position += move_pattern[index % 4] * unit_size
-	index += 1
+		position += move_pattern[index % 4] * unit_size
+		index += 1
 	#print("Enemy Index: " + str(index% 4))
 	
 
